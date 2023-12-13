@@ -8,6 +8,7 @@ import Nav from './Nav'
 import BtnLogin from './BtnLogin'
 import BtnLogout from './BtnLogout'
 import User from './User'
+import CartButton from './CartButton'
 
 const Header = () => {
 	const { data, status } = useSession()
@@ -21,10 +22,12 @@ const Header = () => {
 					<div className="flex items-center gap-6">
 						<Nav />
 						<Separator orientation="vertical" />
-						<div className="flex items-center gap-4">
+						<div className="flex items-center gap-6 h-full">
 							<User data={data} status={status} />
 							<BtnLogin status={status} />
 							<BtnLogout status={status} />
+							<Separator orientation="vertical" />
+							<CartButton />
 						</div>
 					</div>
 				</div>
