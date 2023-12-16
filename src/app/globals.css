@@ -76,4 +76,10 @@
   body {
     @apply bg-background text-foreground h-full;
   }
+
+  .after-pt-100::after {
+        content: '';
+        display: block;
+        padding-top: 100%;
+    }
 }
