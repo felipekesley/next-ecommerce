@@ -1,9 +1,10 @@
 import { prismaClient } from '@/lib/prisma'
 import Link from 'next/link'
-import CustomLink from './customLink'
+import CustomLink from './CustomLink'
 
 const Nav = async () => {
 	const categories = await prismaClient.category.findMany({})
+
 	return (
 		<nav>
 			<ul className="flex gap-3">

@@ -1,7 +1,12 @@
+import Container from '@/components/Common/Container'
+import HeroBanner from '@/components/HeroBanner'
+import ProductsList from '@/components/ProductsList'
+
 export default function Home() {
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-between p-24">
-			home
-		</main>
+		<Container>
+			<HeroBanner />
+			<ProductsList />
+		</Container>
 	)
 }

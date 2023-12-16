@@ -1,7 +1,7 @@
 import { ChildrenProps } from '@/types/Common'
 
-const ContainerSite = ({ children }: ChildrenProps) => {
+const Container = ({ children }: ChildrenProps) => {
 	return <div className="container mx-auto">{children}</div>
 }
 
-export default ContainerSite
+export default Container

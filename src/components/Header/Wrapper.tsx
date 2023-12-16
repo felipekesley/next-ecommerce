@@ -5,8 +5,6 @@ import User from './User'
 import BtnLoading from './BtnLoading'
 import BtnLogin from './BtnLogin'
 import BtnLogout from './BtnLogout'
-import { Separator } from '../ui/separator'
-import CartButton from './CartButton'
 
 const Wrapper = () => {
 	const { data, status } = useSession()
@@ -16,8 +14,6 @@ const Wrapper = () => {
 			<BtnLoading status={status} />
 			<BtnLogin status={status} />
 			<BtnLogout status={status} />
-			<Separator orientation="vertical" />
-			<CartButton />
 		</div>
 	)
 }

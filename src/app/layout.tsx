@@ -4,6 +4,7 @@ import './globals.css'
 import AuthProvider from '@/providers/auth'
 import Header from '@/components/Header'
 import JotaiProvider from '@/providers/jotaiProvider'
+import Main from '@/components/Common/Main'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,7 +24,7 @@ export default function RootLayout({
 				<AuthProvider>
 					<JotaiProvider>
 						<Header />
-						{children}
+						<Main>{children}</Main>
 					</JotaiProvider>
 				</AuthProvider>
 			</body>

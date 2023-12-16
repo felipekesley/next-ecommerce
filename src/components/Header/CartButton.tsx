@@ -1,3 +1,4 @@
+'use client'
 import { cartAtom } from '@/atoms/cartAtom'
 import { useAtom } from 'jotai'
 import { ShoppingCart } from 'lucide-react'
