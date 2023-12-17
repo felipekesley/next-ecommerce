@@ -8,7 +8,7 @@ export const createCheckout = async (products) => {
 	})
 
 	const checkout = await stripe.checkout.sessions.create({
-		payment_method_types: ['card', 'pix'],
+		payment_method_types: ['card'],
 		mode: 'payment',
 		success_url: 'http://localhost:3000',
 		cancel_url: 'http://localhost:3000',
@@ -19,9 +19,9 @@ export const createCheckout = async (products) => {
 					product_data: {
 						name: product.name,
 						description: product.description,
-						images: product.imagesUrls
+						images: product.imageUrls
 					},
-					unit_amount: product.totalPrice * 100
+					unit_amount: Number(product.basePrice) * 100
 				},
 				quantity: product.quantity
 			}

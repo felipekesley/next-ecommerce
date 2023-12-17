@@ -14,10 +14,27 @@ import { useAtom } from 'jotai'
 import Image from 'next/image'
 import { Separator } from '../ui/separator'
 import { ShoppingCart } from 'lucide-react'
+import { createCheckout } from '@/actions/checkout'
+import { loadStripe } from '@stripe/stripe-js'
 
 const CartSheet = () => {
-	const [cart] = useAtom(cartState)
-	const cartQuantity = cart.reduce((total, item) => total + item.quantity, 0)
+	const [products] = useAtom(cartState)
+	const cartQuantity = products.reduce(
+		(total, item) => total + item.quantity,
+		0
+	)
+
+	const handleCheckout = async () => {
+		const checkout = await createCheckout(products)
+
+		const stripe = await loadStripe(
+			process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY
+		)
+
+		stripe?.redirectToCheckout({
+			sessionId: checkout.id
+		})
+	}
 
 	return (
 		<Sheet>
@@ -38,9 +55,9 @@ const CartSheet = () => {
 				</SheetHeader>
 				<Separator orientation="horizontal" className="my-4" />
 				<div className="flex flex-col gap-4 py-4">
-					{cart.map((product) => (
-						<>
-							<div className="flex gap-4" key={product.id}>
+					{products.map((product) => (
+						<div key={`${product.id}-${Math.random()}`}>
+							<div className="flex gap-4">
 								<Image
 									src={product.imageUrls[0]}
 									alt={product.name}
@@ -54,11 +71,13 @@ const CartSheet = () => {
 								orientation="horizontal"
 								className="my-4"
 							/>
-						</>
+						</div>
 					))}
 				</div>
 				<SheetFooter>
-					<Button type="submit">continue to checkout</Button>
+					<Button onClick={handleCheckout} type="submit">
+						continue to checkout
+					</Button>
 				</SheetFooter>
 			</SheetContent>
 		</Sheet>
