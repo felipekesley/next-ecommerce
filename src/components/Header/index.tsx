@@ -3,7 +3,7 @@ import ContainerSite from '@/components/Common/Container'
 import Logo from './Logo'
 import Nav from './Nav'
 import Wrapper from './Wrapper'
-import CartButton from './CartButton'
+import CartSheet from '../CartSheet'
 
 const Header = () => {
 	return (
@@ -20,7 +20,7 @@ const Header = () => {
 				<Separator orientation="horizontal" className="my-4" />
 				<div className="w-ful flex justify-between items-center">
 					<Nav />
-					<CartButton />
+					<CartSheet />
 				</div>
 			</ContainerSite>
 		</header>
