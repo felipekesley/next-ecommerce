@@ -1,4 +1,4 @@
+import { atomWithStorage } from 'jotai/utils'
 import { Product } from '@/types/Product'
-import { atom } from 'jotai'
 
-export const cartState = atom<Product[]>([])
+export const cartState = atomWithStorage<Product[]>('next-commerce-cart', [])
