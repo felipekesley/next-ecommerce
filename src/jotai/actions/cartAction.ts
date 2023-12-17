@@ -9,7 +9,7 @@ const updateCart = (cart: Product[], productIndex: number, ammount: number) => {
 	const updatedCart = [...cart]
 	const product = updatedCart[productIndex]
 
-	const newQuantity = (product.quantity ?? 0) + ammount
+	const newQuantity = product.quantity + ammount
 	if (newQuantity > 0) {
 		updatedCart[productIndex] = { ...product, quantity: newQuantity }
 	} else {

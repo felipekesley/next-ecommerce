@@ -7,10 +7,7 @@ import { ShoppingCart } from 'lucide-react'
 const CartButton = () => {
 	const [cart] = useAtom(cartState)
 
-	const cartQuantity = cart.reduce(
-		(total, item) => total + (item.quantity ?? 0),
-		0
-	)
+	const cartQuantity = cart.reduce((total, item) => total + item.quantity, 0)
 
 	return (
 		<button

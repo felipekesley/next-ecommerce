@@ -11,7 +11,8 @@ const ProductsList = async () => {
 					key={product.id}
 					product={{
 						...product,
-						basePrice: Number(product.basePrice)
+						basePrice: Number(product.basePrice),
+						quantity: 1
 					}}
 				/>
 			))}

@@ -7,5 +7,5 @@ export type Product = {
 	discount: number
 	imageUrls: string[]
 	categoryId: string
-	quantity?: number
+	quantity: number
 }
