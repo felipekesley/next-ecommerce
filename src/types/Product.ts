@@ -9,3 +9,7 @@ export type Product = {
 	categoryId: string
 	quantity: number
 }
+
+export type CartProduct = Product & {
+	quantity: number
+}

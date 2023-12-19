@@ -9,7 +9,7 @@ import {
 	SheetTitle,
 	SheetTrigger
 } from '@/components/ui/sheet'
-import { cartState } from '@/jotai/atoms/cartAtom'
+import { cartAtom, cartQuantityAtom } from '@/atoms/cartAtom'
 import { useAtom } from 'jotai'
 import Image from 'next/image'
 import { Separator } from '../ui/separator'
@@ -18,11 +18,8 @@ import { createCheckout } from '@/actions/checkout'
 import { loadStripe } from '@stripe/stripe-js'
 
 const CartSheet = () => {
-	const [products] = useAtom(cartState)
-	const cartQuantity = products.reduce(
-		(total, item) => total + item.quantity,
-		0
-	)
+	const [products] = useAtom(cartAtom)
+	const [cartQuantity] = useAtom(cartQuantityAtom)
 
 	const handleCheckout = async () => {
 		const checkout = await createCheckout(products)

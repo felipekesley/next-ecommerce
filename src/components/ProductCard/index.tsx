@@ -2,23 +2,15 @@
 
 import Image from 'next/image'
 import { Button } from '../ui/button'
-import { Product } from '@/types/Product'
-import { useAtom } from 'jotai'
-import { cartActions } from '@/jotai/actions/cartAction'
+import { CartProduct } from '@/types/Product'
+import { useCart } from '@/hooks/useCart'
 
 type Props = {
-	product: Product
+	product: CartProduct
 }
 
 const ProductCard = ({ product }: Props) => {
-	const [, cartAct] = useAtom(cartActions)
-
-	const addToCart = () => {
-		cartAct({ type: 'add', item: { ...product, quantity: 0 } })
-	}
-	const removeToCart = () => {
-		cartAct({ type: 'remove', itemId: product.id })
-	}
+	const { addToCart, removeFromCart } = useCart()
 
 	return (
 		<div className="w-full">
@@ -33,8 +25,10 @@ const ProductCard = ({ product }: Props) => {
 
 			<h3>{product.name}</h3>
 			<p>R$ {Number(product.basePrice).toFixed(2)}</p>
-			<Button onClick={addToCart}>Add to cart</Button>
-			<Button onClick={removeToCart}>Remove to cart</Button>
+			<Button onClick={() => addToCart(product)}>Add to cart</Button>
+			<Button onClick={() => removeFromCart(product)}>
+				Remove to cart
+			</Button>
 		</div>
 	)
 }
