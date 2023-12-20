@@ -1,4 +1,9 @@
-import { addProduct, cartAtom, removeProduct } from '@/atoms/cartAtom'
+import {
+	addProduct,
+	cartAtom,
+	removeProduct,
+	totalPriceAtom
+} from '@/atoms/cartAtom'
 import { CartProduct } from '@/types/Product'
 import { useAtom } from 'jotai'
 
@@ -6,6 +11,7 @@ export const useCart = () => {
 	const [cart] = useAtom(cartAtom)
 	const [, addProductToCart] = useAtom(addProduct)
 	const [, removeProductFromCart] = useAtom(removeProduct)
+	const totalPrice = useAtom(totalPriceAtom)[0]
 
 	const addToCart = (product: CartProduct) => {
 		addProductToCart(product)
@@ -18,6 +24,7 @@ export const useCart = () => {
 	return {
 		cart,
 		addToCart,
-		removeFromCart
+		removeFromCart,
+		totalPrice
 	}
 }
