@@ -40,10 +40,13 @@ const CartSheet = () => {
 	return (
 		<Sheet>
 			<div className="flex items-center gap-5">
-				<p>
-					Total Cart:{' '}
-					<span className="font-semibold">R$ {totalPrice}</span>
-				</p>
+				{totalPrice > 0 && (
+					<p>
+						Total Cart:{' '}
+						<span className="font-semibold">R$ {totalPrice}</span>
+					</p>
+				)}
+
 				<SheetTrigger asChild>
 					<Button
 						variant="ghost"
