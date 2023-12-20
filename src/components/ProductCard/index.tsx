@@ -10,7 +10,7 @@ type Props = {
 }
 
 const ProductCard = ({ product }: Props) => {
-	const { addToCart, removeFromCart } = useCart()
+	const { addToCart } = useCart()
 
 	return (
 		<div className="w-full">
@@ -23,12 +23,13 @@ const ProductCard = ({ product }: Props) => {
 				/>
 			</div>
 
-			<h3>{product.name}</h3>
-			<p>R$ {Number(product.basePrice).toFixed(2)}</p>
+			<div className="flex justify-between gap-2 my-4">
+				<h3 className="font-semibold">{product.name}</h3>
+				<p className="font-semibold">
+					R$ {Number(product.basePrice).toFixed(2)}
+				</p>
+			</div>
 			<Button onClick={() => addToCart(product)}>Add to cart</Button>
-			<Button onClick={() => removeFromCart(product)}>
-				Remove to cart
-			</Button>
 		</div>
 	)
 }
