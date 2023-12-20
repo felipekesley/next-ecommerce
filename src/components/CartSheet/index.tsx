@@ -11,11 +11,13 @@ import {
 } from '@/components/ui/sheet'
 import { cartAtom, cartQuantityAtom } from '@/atoms/cartAtom'
 import { useAtom } from 'jotai'
-import Image from 'next/image'
-import { Separator } from '../ui/separator'
+
+import { Separator } from '@/components/ui/separator'
 import { ShoppingCart } from 'lucide-react'
 import { createCheckout } from '@/actions/checkout'
 import { loadStripe } from '@stripe/stripe-js'
+import ProductCartSheetCard from '@/components/ProductCartSheetCard'
+import { TypographyLarge } from '@/components/ui/typographyLarge'
 
 const CartSheet = () => {
 	const [products] = useAtom(cartAtom)
@@ -53,28 +55,23 @@ const CartSheet = () => {
 				<Separator orientation="horizontal" className="my-4" />
 				<div className="flex flex-col gap-4 py-4">
 					{products.map((product) => (
-						<div key={`${product.id}-${Math.random()}`}>
-							<div className="flex gap-4">
-								<Image
-									src={product.imageUrls[0]}
-									alt={product.name}
-									width={120}
-									height={160}
-									className=" object-contain h-auto rounded-md"
-								/>
-								<p>{product.name}</p>
-							</div>
-							<Separator
-								orientation="horizontal"
-								className="my-4"
-							/>
-						</div>
+						<ProductCartSheetCard
+							key={product.id}
+							product={product}
+						/>
 					))}
 				</div>
 				<SheetFooter>
-					<Button onClick={handleCheckout} type="submit">
-						continue to checkout
-					</Button>
+					{cartQuantity === 0 && (
+						<TypographyLarge>
+							Your shopping cart is empty
+						</TypographyLarge>
+					)}
+					{cartQuantity > 0 && (
+						<Button onClick={handleCheckout} type="submit">
+							continue to checkout
+						</Button>
+					)}
 				</SheetFooter>
 			</SheetContent>
 		</Sheet>
